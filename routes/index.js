@@ -16,6 +16,10 @@ router.get('/', function(req, res, next) {
   console.log(__dirname)
   res.sendFile(path.join(__dirname, 'index.html'));
 });
+router.get('/2', function(req, res, next) {
+  console.log(__dirname)
+  res.sendFile(path.join(__dirname, 'index2.html'));
+});
 router.post('/upload',upload.any(), (req,res) =>{
   res.end('ok')
 })

@@ -32,26 +32,38 @@
     <footer>
     <script>
         function uploadFile(){
+  //var formData = new FormData(document.getElementById("frmUploadFile")s);
   var formData = new FormData($("#frmUploadFile")[0]);
-  $.ajax({
-    url: '/upload',
-    type: 'POST',
-    data: formData,
-    cache: false,
-    contentType: false,
-    processData: false,
-    success: function(data){
-        console.log(data)
-      if('ok' === data) {
+  fetch('/upload',{
+      method:'POST',
+      body:formData,
+  }).then(res => res.text()).then(data =>{
+      if (data === 'ok'){
         $("#spanMessage").html("上传成功");
-      } else {
+      }else{
         $("#spanMessage").html("上传失败");
       }
-    },
-    error: function(){
-      $("#spanMessage").html("与服务器通信发生错误");
-    }
-  });
+  })
+//   $.ajax({
+//     url: '/upload',
+//     type: 'POST',
+//     data: formData,
+//     async: false,
+//     cache: false,
+//     contentType: false,
+//     processData: false,
+//     success: function(data){
+//         console.log(data)
+//       if('ok' === data) {
+//         $("#spanMessage").html("上传成功");
+//       } else {
+//         $("#spanMessage").html("上传失败");
+//       }
+//     },
+//     error: function(){
+//       $("#spanMessage").html("与服务器通信发生错误");
+//     }
+//   });
 }
     </script>
   </body>
